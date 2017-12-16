@@ -265,12 +265,10 @@ function getTrialMeetings(ageGroup) {
     if(ageGroup == "mikro" || ageGroup == "mini") {
         firstDay = inThreeWeeks.day("thursday");
         dayName = "Torsdag";
-        //TODO: holidays
     }
     else if(ageGroup == "junior" || ageGroup == "trop") {
         firstDay = inThreeWeeks.day("tuesday");
         dayName = "Tirsdag";
-        //TODO: holidays
     }
     else {
         firstDay = inThreeWeeks.day("sunday");
@@ -279,14 +277,32 @@ function getTrialMeetings(ageGroup) {
         }
         weekInterval = 2;
         dayName = "Søndag";
-        //TODO: holidays
     }
 
-    return [
-        prettyDate(firstDay, dayName),
-        prettyDate(firstDay.add(weekInterval, "week"), dayName),
-        prettyDate(firstDay.add(2 * weekInterval, "weeks"), dayName)
-    ];
+    let firstDay = pushUntilInSeason(firstDay, weekInterval);
+    let secondDay = pushUntilInSeason(firstDay.add(weekInterval, "week"));
+    let thirdDay = pushUntilInSeason(secondDay.add(weekInterval, "week"));
+
+    return [ firstDay, secondDay, thirdDay ].map((day) => prettyDate(day, dayName));
+}
+
+function pushUntilInSeason(day, weekInterval) {
+    while(isOffSeason(day)) {
+        day = day.add(weekInterval, "week");
+    }
+    return day;
+}
+
+function isOffSeason(day) {
+    //TODO: Is summer
+    //TODO: Is week 42
+    //TODO: Is christmas/newyear
+    //TODO: Is winter holiday
+    //TODO: Is easter
+    //TODO: Is Store bededag
+    //TODO: Is Kristi himmelfartsdag
+    //TODO: Is pinsen
+    return false;
 }
 
 function prettyDate(date, dayName) {
