@@ -1,4 +1,34 @@
-<p><a href="https://accounts.google.com/o/oauth2/auth?client_id=110791495522-enpd9m40amer4r13q958ec176gqv6rr3.apps.googleusercontent.com&amp;redirect_uri=http%3A%2F%2Fsoeborggruppe.dk%2Fventelisted-authed&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fspreadsheets&amp;response_type=code&amp;state=">Klik her for at gå i gang med ventelisteoptag</a></p>
+<p id="auth-link">
+  <a href="https://accounts.google.com/o/oauth2/auth?client_id=110791495522-enpd9m40amer4r13q958ec176gqv6rr3.apps.googleusercontent.com&amp;redirect_uri=http%3A%2F%2Fsoeborggruppe.dk%2Fventelisted-authed&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fspreadsheets&amp;response_type=code&amp;state=">Klik her for at gå i gang med ventelisteoptag</a>
+</p>
+
+<div id="waiting-list-form" style="//display:none;">
+  <form class="" action="index.html" method="post">
+    <div>
+      <label for="inviteCount">Antal personer</label>
+      <input id="inviteCount" type="number" name="inviteCount">
+    </div>
+
+    <div>
+      <label for="ageGroup">Gren</label>
+      <select id="ageGroup" name="ageGroup">
+        <option>Familie</option>
+        <option>Mikro</option>
+        <option>Mini</option>
+        <option>Junior</option>
+        <option>Trop</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="year">Årgang</label>
+      <select id="year" class="js-years-input" type="number" name="year"></select>
+    </div>
+
+    <button type="button" name="submit">Send</button>
+  </form>
+</div>
+
 <script>
     (function() {
         let url = location.href;
@@ -14,6 +44,61 @@
         if(!code) {
             return;
         }
-        //TODO: Remove link (above) and place a form instead
+        document.querySelector('#auth-link').style.display = 'none';
+        document.querySelector('#waiting-list-form').style.display = 'block';
     })();
+</script>
+
+<script type="text/javascript">
+
+  var styles = {
+    input: `
+      padding: 10px;
+      border: 1px solid #222;
+      background-color: white;
+      margin-bottom: 20px;
+    `,
+    label: `
+      display: block;
+      margin-bottom: 5px;
+    `,
+    button: `
+      padding: 10px 20px;
+      border: 1px solid #2980b9;
+      background-color: #3498db;
+      color: white;
+      margin-bottom: 20px;
+    `
+  }
+
+  function style(selector, data) {
+    selector.setAttribute("style", data);
+  }
+
+  function styleElements(selector, css) {
+
+    var elements = document.querySelectorAll(selector);
+
+    Array.prototype.forEach.call(elements, (input) => style(input, css));
+  };
+
+  function populateYears() {
+    var selectInput = document.querySelector('.js-years-input');
+    var years = [];
+    addYears(2, years);
+    selectInput.innerHTML = years.map(year => `<option value="${year}">${year}</option>`).join("");
+  }
+
+  function addYears(year, years) {
+    if(year == 21) return;
+    var currentYear = new Date().getFullYear();
+    years.push(currentYear - year);
+    addYears(year + 1, years);
+  }
+
+  populateYears();
+
+  styleElements('input, select', styles.input);
+  styleElements('label', styles.label);
+  styleElements('button', styles.button);
 </script>
