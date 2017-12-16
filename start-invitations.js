@@ -31,7 +31,7 @@ let inviteCount = 1;
 let redirectUrl = "http://soeborggruppe.dk/ventelisted-authed?code=4/LUXqkeluYPOiIbvJiK3bSaxPy5bYVXSazxN4Tj9PpOU#";
 let leaderEmail = "niels.abildgaard+leader@gmail.com";
 
-let startInvitations = (redirectUrl, year, ageGroup, inviteCount, leaderEmail, callback) => {
+module.exports = (redirectUrl, year, ageGroup, inviteCount, leaderEmail, callback) => {
     sheetsAuth.requesterFromUrl(redirectUrl, (error, request) => {
         if(error) {
             return callback(error);
@@ -69,13 +69,6 @@ let startInvitations = (redirectUrl, year, ageGroup, inviteCount, leaderEmail, c
         });
     });
 };
-
-startInvitations(redirectUrl, year, ageGroup, inviteCount, leaderEmail, (error) => {
-    if(error) {
-        return console.error("Failed to start invitations", error);
-    }
-    console.log("Started invitations!");
-});
 
 function findWaitersToInvite(request, year, inviteCount, callback) {
     getAllWaiters(request, (error, waiters) => {
