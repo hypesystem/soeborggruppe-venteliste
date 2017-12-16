@@ -8,7 +8,8 @@
     "mailgun-mustache-mailer": "^1.0.0",
     "request": "^2.83.0",
     "spacetime": "^2.2.0",
-    "uuid": "^3.1.0"
+    "uuid": "^3.1.0",
+    "serverless-google-cloudfunctions": "^1.1.0"
   },
   "devDependencies": {},
   "scripts": {
