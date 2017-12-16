@@ -279,7 +279,7 @@ function getTrialMeetings(ageGroup) {
         dayName = "Søndag";
     }
 
-    let firstDay = pushUntilInSeason(firstDay, weekInterval);
+    firstDay = pushUntilInSeason(firstDay, weekInterval);
     let secondDay = pushUntilInSeason(firstDay.add(weekInterval, "week"));
     let thirdDay = pushUntilInSeason(secondDay.add(weekInterval, "week"));
 

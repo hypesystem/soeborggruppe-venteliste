@@ -3,7 +3,7 @@
 </p>
 
 <div id="waiting-list-form" style="//display:none;">
-  <form class="" action="index.html" method="post">
+  <form>
     <div>
       <label for="inviteCount">Antal personer</label>
       <input id="inviteCount" type="number" name="inviteCount">
@@ -22,10 +22,15 @@
 
     <div>
       <label for="year">Årgang</label>
-      <select id="year" class="js-years-input" type="number" name="year"></select>
+      <select id="birthYear" class="js-years-input" type="number" name="year"></select>
     </div>
 
-    <button type="button" name="submit">Send</button>
+    <div>
+      <label for="leaderEmail">Leder Email (svar sendes til denne email)</label>
+      <input id="leaderEmail" type="email" name="leaderEmail">
+    </div>
+
+    <button id="submitButton" type="button" name="submit">Send</button>
   </form>
 </div>
 
@@ -101,4 +106,45 @@
   styleElements('input, select', styles.input);
   styleElements('label', styles.label);
   styleElements('button', styles.button);
+
+  let submitButton = document.querySelector('#submitButton');
+  submitButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    let inviteCount = document.querySelector('#inviteCount').value;
+    let ageGroup = document.querySelector('#ageGroup').value;
+    let birthYear = document.querySelector('#birthYear').value;
+    let leaderEmail = document.querySelector('#leaderEmail').value;
+    let redirectUrl = location.href;
+    sendRequest(inviteCount, ageGroup, birthYear, leaderEmail, redirectUrl);
+  });
+
+  // redirectUrl, year, ageGroup, inviteCount, leaderEmail
+  let redirectUrl = location.href;
+
+  function sendRequest(inviteCount, ageGroup, birthYear, leaderEmail, redirectUrl) {
+    var req = new XMLHttpRequest();
+    req.open("POST", "https://us-central1-soeborggruppe-venteliste.cloudfunctions.net/http", true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.onreadystatechange = function() {
+        if(req.readyState != 4) {
+            return;
+        }
+        if(req.status == 200) {
+            return console.log('WORKS');
+        }
+        console.error("Response from server on request", {
+            status: req.statusText,
+            responseType: req.responseType,
+            response: req.response
+        });
+        callbacks.failure();
+    };
+    req.send(JSON.stringify({
+        inviteCount,
+        ageGroup,
+        year: birthYear,
+        leaderEmail,
+        redirectUrl
+    }));
+  }
 </script>
