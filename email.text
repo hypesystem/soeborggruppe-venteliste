@@ -1,0 +1,25 @@
+Vi har plads i {{ branch.name }} i 1. Søborg
+============================================
+
+Kære forældre til {{ child.firstName }},
+
+Det glæder os, at kunne tilbyde jeres barn at starte hos os.
+
+Vi har møder hver {{ branch.meetings.weekDay }} kl. {{ branch.meetings.startTime }} til {{ branch.meetings.endTime }} og I har mulighed for at komme på nedenstående tre prøvemøder, inden I beslutter om jeres barn skal starte.
+Hvis en indmeldelse ikke er foretaget på http://www.soeborggruppe.dk/indmeld senest samme aften som det tredje prøvemøde, vil tilbuddet gå videre til den næste på ventelisten.
+{{ #trialMeetings }}
+- {{ date }}
+{{ /trialMeetings }}
+
+Af hensyn til de øvrige på ventelisten, vil vi bede jer hurtigst muligt at vælge en af mulighederne nedenfor.
+Hvis vi ikke har modtaget et svar senest 21 dage fra i dag, bliver jeres barn slettet fra ventelisten.
+
+- Ja tak, {{ name }} kommer på prøvemøderne: http://soeborggruppe.dk/venteliste-confirm?answer=yes&operationId={{ operationId }}&operationUniqueId={{ operationUniqueId }}
+- Nej tak, {{ name }} vil ikke optages alligevel: http://soeborggruppe.dk/venteliste-confirm?answer=no&operationId={{ operationId }}&operationUniqueId={{ operationUniqueId }}
+- {{ name }} vil gerne beholde pladsen og optages senere: http://soeborggruppe.dk/venteliste-confirm?answer=delay&operationId={{ operationId }}&operationUniqueId={{ operationUniqueId }}
+
+Spejderhilsen,
+{{ branch.leadersName }}
+
+1. Søborg Gruppe
+Det Danske Spejderkorps

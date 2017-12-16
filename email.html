@@ -1,0 +1,32 @@
+<div style="margin: 8px; padding: 15px; border: 5px solid #003366;">
+    <img src="https://i.imgur.com/JauTfwc.png">
+    <h1>Vi har plads i {{ branch.name }} i 1. Søborg</h1>
+    <p>Kære forældre til {{ child.firstName }},</p>
+    <p>Det glæder os, at kunne tilbyde jeres barn at starte hos os.</p>
+    <p>
+        Vi har møder hver {{ branch.meetings.weekDay }} kl. {{ branch.meetings.startTime }} til {{ branch.meetings.endTime }} og I har mulighed for at komme på nedenstående tre prøvemøder, inden I beslutter om jeres barn skal starte.
+        Hvis en indmeldelse ikke er foretaget på <a href="http://soeborggruppe.dk/indmeld">www.soeborggruppe.dk/indmeld</a> senest samme aften som det tredje prøvemøde, vil tilbuddet gå videre til den næste på ventelisten.
+    </p>
+    <ul>
+        {{ #trialMeetings }}
+            <li>{{ date }}</li>
+        {{ /trialMeetings }}
+    </ul>
+    <p>
+        Af hensyn til de øvrige på ventelisten, vil vi bede jer hurtigst muligt at vælge en af mulighederne nedenfor.
+        Hvis vi ikke har modtaget et svar senest 21 dage fra i dag, bliver jeres barn slettet fra ventelisten.
+    </p>
+    <p>
+        <a href="http://soeborggruppe.dk/venteliste-confirm?answer=yes&operationId={{ operationId }}&operationUniqueId={{ operationUniqueId }}" style="display: inline-block; padding: 10px; background: #003366; margin: 5px 0; color: white; font-weight: bold; text-decoration: none;">Ja tak, {{ child.firstName }} kommer på prøvemøderne</a>
+        <a href="http://soeborggruppe.dk/venteliste-confirm?answer=no&operationId={{ operationId }}&operationUniqueId={{ operationUniqueId }}" style="display: inline-block; padding: 10px; background: #003366; margin: 5px 0; color: white; font-weight: bold; text-decoration: none;">Nej tak, {{ child.firstName }} vil ikke optages alligevel</a>
+        <a href="http://soeborggruppe.dk/venteliste-confirm?answer=delay&operationId={{ operationId }}&operationUniqueId={{ operationUniqueId }}" style="display: inline-block; padding: 10px; background: #003366; margin: 5px 0; color: white; font-weight: bold; text-decoration: none;">{{ child.firstName }} vil gerne beholde pladsen og optages senere</a>
+    </p>
+    <p>
+        Spejderhilsen,<br>
+        {{ branch.leadersName }}
+    </p>
+    <p>
+        1. Søborg Gruppe<br>
+        Det Danske Spejderkorps
+    </p>
+</div>
