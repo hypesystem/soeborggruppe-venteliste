@@ -1,4 +1,23 @@
-<p><a href="https://accounts.google.com/o/oauth2/auth?client_id=110791495522-enpd9m40amer4r13q958ec176gqv6rr3.apps.googleusercontent.com&amp;redirect_uri=http%3A%2F%2Fsoeborggruppe.dk%2Fventelisted-authed&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fspreadsheets&amp;response_type=code&amp;state=">Klik her for at gå i gang med ventelisteoptag</a></p>
+<p id="auth-link">
+  <a href="https://accounts.google.com/o/oauth2/auth?client_id=110791495522-enpd9m40amer4r13q958ec176gqv6rr3.apps.googleusercontent.com&amp;redirect_uri=http%3A%2F%2Fsoeborggruppe.dk%2Fventelisted-authed&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fspreadsheets&amp;response_type=code&amp;state=">Klik her for at gå i gang med ventelisteoptag</a>
+</p>
+
+<div id="waiting-list-form" style="display:none;">
+  <form class="" action="index.html" method="post">
+    <div>
+      <label for="">Antal personer</label>
+      <input type="number" name="name" value="">
+    </div>
+    <br />
+    <div>
+      <label for="">Årgang</label>
+      <input type="text" name="name" value="">
+    </div>
+    <br />
+    <button type="button" name="button">Send</button>
+  </form>
+</div>
+
 <script>
     (function() {
         let url = location.href;
@@ -14,6 +33,7 @@
         if(!code) {
             return;
         }
-        //TODO: Remove link (above) and place a form instead
+        document.querySelector('#auth-link').style.display = 'none';
+        document.querySelector('#waiting-list-form').style.display = 'block';
     })();
 </script>
