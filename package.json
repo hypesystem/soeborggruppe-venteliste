@@ -1,0 +1,27 @@
+{
+  "name": "soeborggruppe-venteliste",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "client-oauth2": "^4.1.0",
+    "mailgun-mustache-mailer": "^1.0.0",
+    "request": "^2.83.0",
+    "spacetime": "^2.2.0",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hypesystem/soeborggruppe-venteliste.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hypesystem/soeborggruppe-venteliste/issues"
+  },
+  "homepage": "https://github.com/hypesystem/soeborggruppe-venteliste#readme"
+}
